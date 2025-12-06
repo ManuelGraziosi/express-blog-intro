@@ -1,1 +1,53 @@
-console.log("[express-blog-intro] Hello World")
+import express from "express"
+
+const app = express();
+const port = 3000;
+
+const posts = [
+  {
+    titolo: "Ciambellone Classico",
+    contenuto: "Un dolce soffice e genuino, perfetto per la colazione o la merenda. Preparato con ingredienti semplici e profumato di vaniglia.",
+    immagine: "/img/ciambellone.jpeg",
+    tags: ["dolci", "tradizionale", "colazione"]
+  },
+  {
+    titolo: "Cracker alla Barbabietola",
+    contenuto: "Cracker croccanti e dal colore vivace grazie alla barbabietola. Perfetti come snack sano o come base per aperitivi creativi.",
+    immagine: "/img/cracker_barbabietola.jpeg",
+    tags: ["snack", "barbabietola", "salato"]
+  },
+  {
+    titolo: "Pane Fritto Dolce",
+    contenuto: "Una ricetta semplice e irresistibile: pane immerso in latte e uova, fritto e cosparso di zucchero. Dolce povero della tradizione.",
+    immagine: "/img/pane_fritto_dolce.jpeg",
+    tags: ["dolci", "fritti", "tradizione"]
+  },
+  {
+    titolo: "Pasta alla Barbabietola",
+    contenuto: "Un primo piatto colorato e cremoso, dove la barbabietola dona dolcezza e un colore intenso alla pasta.",
+    immagine: "/img/pasta_barbabietola.jpeg",
+    tags: ["primi", "barbabietola", "cremoso"]
+  },
+  {
+    titolo: "Torta Paesana",
+    contenuto: "Un dolce rustico tipico della tradizione lombarda, preparato con pane raffermo, cacao, latte e uvetta. Saporito e sostanzioso.",
+    immagine: "/img/torta_paesana.jpeg",
+    tags: ["dolci", "tradizionale", "rustico"]
+  }
+];
+
+app.use(express.static("public"))
+
+app.get("/", (request, response) => {
+    // response.send("Hello in express-blog-intro");
+    response.send("<h1>Server del mio blog</h1>");
+})
+
+app.get("/bacheca", (request, response) => {
+    // response.send("Hello in express-blog-intro");
+    response.json(posts);
+})
+
+app.listen(port, (req, resp) => {
+    console.log(`express-blog-intro in esecuzione sulal porta ${port}!!!`)
+})
