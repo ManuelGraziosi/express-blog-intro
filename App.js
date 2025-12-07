@@ -1,9 +1,14 @@
 import express from "express"
+import fs from "fs"
 
 const app = express();
 const port = 3000;
 
-const posts = [
+
+let rawPost = fs.readFileSync('./src/dataPosts.json', 'utf8');
+let postNew= JSON.parse(rawPost);
+
+const postsOld = [
   {
     titolo: "Ciambellone Classico",
     contenuto: "Un dolce soffice e genuino, perfetto per la colazione o la merenda. Preparato con ingredienti semplici e profumato di vaniglia.",
@@ -45,7 +50,7 @@ app.get("/", (request, response) => {
 
 app.get("/bacheca", (request, response) => {
     // response.send("Hello in express-blog-intro");
-    response.json(posts);
+    response.json(postNew);
 })
 
 app.listen(port, (req, resp) => {
