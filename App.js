@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 
-let rawPost = fs.readFileSync('./src/dataPosts.json', 'utf8');
+let rawPost = fs.readFile('./src/dataPosts.json', 'utf8');
 let postNew= JSON.parse(rawPost);
 
 const postsOld = [
